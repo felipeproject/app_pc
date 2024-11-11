@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
+    <script src="content/campeonato.js"></script> <!-- Arquivo externo JavaScript -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,31 +15,32 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #070807; /* Fundo preto */
+            background-color: #121212; /* Fundo preto moderno */
             display: flex;
             height: 100vh;
             justify-content: center;
             align-items: center;
-            color: #e7e7e7; /* Cor clara para contraste no texto */
+            color: #e7e7e7; /* Texto claro para contraste */
         }
 
         .app-container {
             display: flex;
             height: 90%;
             width: 80%;
-            background: #2c304d; /* Azul petróleo escuro para o fundo da área principal */
+            background: #1c1c1c; /* Fundo escuro mais suave para o conteúdo */
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
         }
 
         /* Barra lateral */
         .sidebar {
             width: 250px;
-            background-color: #206634; /* Verde escuro */
+            background-color: #195c3d; /* Verde vibrante */
             padding: 20px;
             color: white;
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
         }
 
         .sidebar .logo {
@@ -60,18 +61,26 @@
             color: white;
             text-decoration: none;
             font-size: 18px;
+            font-weight: 600;
             transition: color 0.3s ease;
         }
 
         .sidebar nav ul li a:hover {
-            color: #60b959; /* Verde vibrante para o hover */
+            color: #fdcb6e; /* Amarelo suave para o hover */
+        }
+
+        .sidebar nav ul li a.active {
+            color: #dff9fb; /* Azul claro para link ativo */
+            font-weight: bold;
         }
 
         /* Conteúdo principal */
         .content {
             flex: 1;
-            padding: 20px;
+            padding: 30px;
             overflow-y: auto;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
 
         header {
@@ -79,17 +88,25 @@
         }
 
         header h1 {
-            font-size: 28px;
-            color: #e7e7e7; /* Cor clara para os títulos */
+            font-size: 32px;
+            color: #ffffff; /* Cor clara para o título */
         }
 
         .section {
             margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section h2 {
-            font-size: 22px;
-            color: #5a5ba6; /* Azul escuro para subtítulos */
+            font-size: 24px;
+            color: #00b894; /* Verde vibrante para subtítulos */
         }
 
         .championship-table {
@@ -102,16 +119,16 @@
         .championship-table td {
             padding: 10px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #444;
         }
 
         .championship-table th {
-            background-color: #206634; /* Verde escuro nos cabeçalhos da tabela */
+            background-color: #9b8e1a; /* Verde vibrante no cabeçalho */
             color: white;
         }
 
         .championship-table tr:hover {
-            background-color: #87b474; /* Verde mais suave no hover da tabela */
+            background-color: #098b7f; /* Verde mais escuro no hover da tabela */
         }
 
         .event-list {
@@ -120,27 +137,9 @@
 
         .event-list li {
             margin: 10px 0;
-            color: #e7e7e7; /* Texto claro para eventos */
+            color: #e7e7e7; /* Texto claro para os eventos */
+            font-weight: 500;
         }
-
-        /* Efeitos de transição */
-        .section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease-out;
-        }
-
-        .section.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Destaque para link ativo */
-        .sidebar nav ul li a.active {
-            color: #60b959; /* Verde vibrante para o link ativo */
-            font-weight: bold;
-        }
-
     </style>
 </head>
 
@@ -148,10 +147,10 @@
     <div class="app-container">
         <!-- Barra lateral -->
         <div class="sidebar">
-            <img src="https://via.placeholder.com/150" alt="Logo do Clã" class="logo">
+            <img src="logo.png" alt="Logo do Clã" class="logo">
             <nav>
                 <ul>
-                    <li><a href="#home" onclick="showSection('home')">Início</a></li>
+                    <li><a href="#home" onclick="showSection('home')" class="active">Início</a></li>
                     <li><a href="#campeonatos" onclick="showSection('campeonatos')">Campeonatos</a></li>
                     <li><a href="#eventos" onclick="showSection('eventos')">Eventos</a></li>
                 </ul>
@@ -159,47 +158,15 @@
         </div>
 
         <!-- Conteúdo principal -->
-        <div class="content">
+        <div class="content" id="content">
             <header>
                 <h1>Bem-vindo ao Portal do Clã</h1>
             </header>
 
-            <section id="home" class="section">
+            <!-- As seções serão carregadas dinamicamente -->
+            <section id="home" class="section show">
                 <h2>Últimas atualizações</h2>
                 <p>Conteúdo atualizado recentemente...</p>
-            </section>
-
-            <section id="campeonatos" class="section">
-                <h2>Campeonatos em andamento</h2>
-                <table class="championship-table">
-                    <thead>
-                        <tr>
-                            <th>Nome do Campeonato</th>
-                            <th>Status</th>
-                            <th>Data de Início</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Campeonato 1</td>
-                            <td>Em andamento</td>
-                            <td>10/11/2024</td>
-                        </tr>
-                        <tr>
-                            <td>Campeonato 2</td>
-                            <td>Próximo</td>
-                            <td>15/11/2024</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section id="eventos" class="section">
-                <h2>Próximos Eventos</h2>
-                <ul class="event-list">
-                    <li>Evento 1 - 12/11/2024</li>
-                    <li>Evento 2 - 20/11/2024</li>
-                </ul>
             </section>
         </div>
     </div>
@@ -208,12 +175,30 @@
         // Função para mostrar a seção ao clicar
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('show');
-            });
+            sections.forEach(section => section.classList.remove('show')); // Remove a animação de todas as seções
 
-            const activeSection = document.getElementById(sectionId);
-            activeSection.classList.add('show');
+            // Carregar a seção a partir da pasta /content
+            fetch(`/content/${sectionId}.html`)
+                .then(response => {
+                    if (!response.ok) {
+                        // Caso o arquivo não seja encontrado, carrega o conteúdo padrão "indisponível"
+                        return fetch('/content/indisponivel.html');
+                    }
+                    return response.text(); // Caso o conteúdo seja encontrado
+                })
+                .then(data => {
+                    const contentDiv = document.getElementById('content');
+                    contentDiv.innerHTML = data;
+                    const activeSection = document.querySelector(`#${sectionId}`);
+                    // Adiciona a animação de entrada
+                    activeSection.classList.add('show');
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar a seção:', error);
+                    // Caso haja um erro (ex: erro de rede), exibe a mensagem de erro
+                    const contentDiv = document.getElementById('content');
+                    contentDiv.innerHTML = '<p>Ocorreu um erro ao carregar o conteúdo. Tente novamente mais tarde.</p>';
+                });
 
             // Destacar o link ativo na barra lateral
             const links = document.querySelectorAll('.sidebar nav ul li a');
@@ -227,5 +212,4 @@
         };
     </script>
 </body>
-
 </html>

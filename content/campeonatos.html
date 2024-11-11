@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Clã - Campeonatos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset de estilo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e7e7e7;
+        }
+
+        .section {
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .championship-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .championship-table th,
+        .championship-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        .championship-table th {
+            background-color: #9b8e1a;
+            color: white;
+        }
+
+        .championship-table tr:hover {
+            background-color: #098b7f;
+        }
+
+        .championship-table .past {
+            background-color: #333;
+            opacity: 0.7;
+        }
+
+        .championship-table .upcoming {
+            background-color: #1d8b59;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Estilo de ícones inline */
+        .icon-inline {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Título de campeonatos futuros */
+        h3 {
+            font-size: 24px;
+            color: #00b894;
+            margin-bottom: 20px;
+        }
+
+        .championship-table td,
+        .championship-table th {
+            font-size: 16px;
+        }
+
+        /* Estilo para a linha expandida de detalhes - inicialmente oculta */
+        .expanded-info {
+            background-color: #2c3e50;
+            color: #ddd;
+            font-size: 14px;
+            display: none; /* Inicialmente oculta */
+        }
+
+        .expanded-info td {
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="campeonatos" class="section">
+        <h2><i class="fas fa-trophy icon-inline" style="color: #fdcb6e;"></i>Campeonatos em andamento</h2>
+
+        <!-- Tabela para Campeonatos Passados -->
+        <h3><i class="fas fa-history icon-inline" style="color: #b2bec3;"></i>Campeonatos Passados</h3>
+        <table class="championship-table">
+            <thead>
+                <tr>
+                    <th>Nome do Campeonato</th>
+                    <th>Status</th>
+                    <th>Data de Início</th>
+                    <th>Hora de Início</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Campeonato Passado (Encerrado) -->
+                <tr class="past">
+                    <td><i class="fas fa-check-circle icon-inline" style="color: #a5b1c2;"></i>Campeonato de Duplas - TTP</td>
+                    <td>Encerrado</td>
+                    <td>09/11/2024</td>
+                    <td>18:30</td>
+                </tr>
+                <tr class="expanded-info">
+                    <td colspan="5">
+                        <strong>Descrição:</strong> O Campeonato de Duplas - TTP foi um evento emocionante, onde duplas de jogadores competiram em várias rodadas, com muita estratégia e habilidades testadas ao limite. Ao final, as equipes vencedoras garantiram prêmios exclusivos, incluindo skins e créditos para o próximo campeonato. Fique atento aos próximos eventos!
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Tabela para Campeonatos Futuros -->
+        <h3><i class="fas fa-calendar-check icon-inline" style="color: #00b894;"></i>Próximos Campeonatos</h3>
+        <table class="championship-table">
+            <thead>
+                <tr>
+                    <th>Nome do Campeonato</th>
+                    <th>Categoria</th>
+                    <th>Status</th>
+                    <th>Data de Início</th>
+                    <th>Hora de Início</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Campeonatos Solos -->
+                <tr class="upcoming-row upcoming" onclick="toggleDetails(this)">
+                    <td><i class="fas fa-user icon-inline" style="color: #fff;"></i>Campeonato Solo - Modo Clássico</td>
+                    <td>Solos</td>
+                    <td>Não Agendado</td>
+                    <td>__/__/__</td>
+                    <td>00:00</td>
+                </tr>
+                <tr class="expanded-info">
+                    <td colspan="5">
+                        <strong>Descrição:</strong> Campeonato solo no modo clássico, com prêmios para os três primeiros
+                        colocados.
+                    </td>
+                </tr>
+
+                <!-- Campeonatos Duplas -->
+                <tr class="upcoming-row upcoming" onclick="toggleDetails(this)">
+                    <td><i class="fas fa-users icon-inline" style="color: #fff;"></i>Campeonato de Duplas</td>
+                    <td>Duplas</td>
+                    <td>Não Agendado</td>
+                    <td>__/__/__</td>
+                    <td>00:00</td>
+                </tr>
+                <tr class="expanded-info">
+                    <td colspan="5">
+                        <strong>Descrição:</strong> Campeonato de duplas com regras específicas do modo TTP ou FFP.
+                    </td>
+                </tr>
+
+                <!-- Campeonatos Squads -->
+                <tr class="upcoming-row upcoming" onclick="toggleDetails(this)">
+                    <td><i class="fas fa-users-cog icon-inline" style="color: #fff;"></i>Campeonato Squads
+                    </td>
+                    <td>Squads</td>
+                    <td>Não Agendado</td>
+                    <td>__/__/__</td>
+                    <td>00:00</td>
+                </tr>
+                <tr class="expanded-info">
+                    <td colspan="5">
+                        <strong>Descrição:</strong> Competição para squads com 4 mapas diferentes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Link para o arquivo JavaScript externo -->
+    <script src="campeonatos.js"></script>
+</body>
+
+</html>

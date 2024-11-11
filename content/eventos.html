@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Clã - Eventos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset de estilo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e7e7e7;
+            padding: 0;
+            margin: 0;
+        }
+
+        .section {
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .event-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .event-item {
+            background-color: #8c8d8f; /* Cor de fundo mais viva e forte para os eventos */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            color: #ffffff; /* Garantir que o texto dentro da caixa fique branco */
+        }
+
+        .event-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.8);
+        }
+
+        .event-item i {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .event-item h3 {
+            font-size: 20px;
+            color: #ffffff; /* Verde vibrante para o título */
+            margin-bottom: 10px;
+        }
+
+        .event-item p {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .event-item span {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .event-item span i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+
+        .event-item .event-date {
+            color: #fcfcfc;
+            font-weight: bold;
+        }
+
+        .event-item .event-description {
+            color: #f4f5f5;
+        }
+
+        /* Estilo para eventos futuros */
+        .event-item.upcoming {
+            background-color: #282b29; /* Verde vibrante para eventos futuros */
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Estilo para eventos passados */
+        .event-item.past {
+            background-color: #524050; /* Cor de fundo mais escura para eventos passados */
+            opacity: 0.85; /* Diminui a opacidade para dar o efeito de "já aconteceu" */
+            color: #bdc3c7; /* Cor mais clara para o texto de eventos passados */
+        }
+
+        .event-item.past h3 {
+            color: #7f8c8d; /* Cor mais suave para o título do evento passado */
+        }
+
+        .event-item.past p {
+            color: #95a5a6; /* Texto mais claro para eventos passados */
+        }
+
+        /* Ícones */
+        .event-item .fas {
+            color: #f39c12;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section id="eventos" class="section">
+        <h2><i class="fas fa-calendar-alt" style="color: #00b894;"></i> Próximos Eventos</h2>
+
+        <div class="event-list">
+            <!-- Evento 1 -->
+            <div class="event-item upcoming">
+                <i class="fas fa-users-cog" style="color: #fdcb6e;"></i>
+                <h3>Definições de Capitão</h3>
+                <p><span><i class="fas fa-calendar-day" style="color: #098b7f;"></i> <span class="event-date">Em breve</span></span></p>
+                <p class="event-description">
+                    Votação para a escolha dos novos líderes de equipes. O capitão será responsável por convocar os membros e organizar as disputas internas do clã. Mais informações serão definidas em breve.
+                </p>
+            </div>
+
+            <!-- Evento 2 -->
+            <div class="event-item upcoming">
+                <i class="fas fa-users" style="color: #fdcb6e;"></i>
+                <h3>Treino de Coordenação</h3>
+                <p><span><i class="fas fa-calendar-day" style="color: #098b7f;"></i> <span class="event-date">Em breve</span></span></p>
+                <p class="event-description">
+                    Treinamento focado em melhorar a coordenação e as estratégias do clã durante os campeonatos.
+                </p>
+            </div>
+
+            <!-- Evento 3 -->
+            <div class="event-item upcoming">
+                <i class="fas fa-vote-yea" style="color: #fdcb6e;"></i>
+                <h3>Votação para Novas Regras</h3>
+                <p><span><i class="fas fa-calendar-day" style="color: #098b7f;"></i> <span class="event-date">Em breve</span></span></p>
+                <p class="event-description">
+                    Discussão e votação sobre novas regras para o campeonato para garantir que todos os participantes possam competir em um ambiente justo e organizado. 
+                </p>
+            </div>
+        </div>
+
+        <h2><i class="fas fa-calendar-check" style="color: #00b894;"></i> Eventos Passados</h2>
+
+        <div class="event-list">
+            <!-- Evento Passado -->
+            <div class="event-item past">
+                <i class="fas fa-check-circle" style="color: #a5b1c2;"></i>
+                <h3>Campeonato de Duplas - TTP</h3>
+                <p><span><i class="fas fa-calendar-day" style="color: #098b7f;"></i> <span class="event-date">09/11/2024</span></span></p>
+                <p class="event-description">
+                    Campeonato de Duplas realizado no modo TTP. Evento encerrado.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Link para o Font Awesome CDN diretamente inline -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+
+</html>
